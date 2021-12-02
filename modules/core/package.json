@@ -1,0 +1,12 @@
+{
+  "name": "core-app",
+  "version": "1.0.",
+  "main": "index.js",
+  "private": true,
+
+  "plugin": {
+    "consumes": [
+      "contactRoutes"
+    ]
+  }
+}
