@@ -8,12 +8,12 @@ module.exports = (imports,options) => {
 
         const router = express.Router();
 
-        router.get('/list/all', async (req, res) => {
+        router.get('/stable/coins', async (req, res) => {
             try {
 
-                let {network = 'kovan'} = req.query;
+                let {network = 'fuji'} = req.query;
 
-                let markets = await controller.contract.getAllMarkets(network);
+                let markets = await controller.contract.getStableCoins(network);
 
                 res.send(markets);
 
@@ -22,8 +22,23 @@ module.exports = (imports,options) => {
                     message: 'Internal Server Error'
                 })
             }
-        })
+        });
 
+        router.get('/strategies/list', async (req, res) => {
+            try {
+
+                let {network = 'fuji'} = req.query;
+
+                let markets = await controller.contract.getStrategies(network);
+
+                res.send(markets);
+
+            } catch (Err) {
+                res.status(500).send({
+                    message: 'Internal Server Error'
+                })
+            }
+        });
 
         return router;
 

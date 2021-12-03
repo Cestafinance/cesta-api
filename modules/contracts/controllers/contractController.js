@@ -77,18 +77,26 @@ module.exports = () => {
     // addAsset();
 
 
-    const getAllMarkets = async (network) => {
-        let markets = await Schemas.markets.find({
+    const getStableCoins = async (network) => {
+        let coins = await Schemas.stable_coins.find({
             network
-        }).populate('underLyingInfo').lean();
+        }).lean();
 
-        return markets;
+        return coins;
+    }
+
+    const getStrategies = async (network) => {
+        let strategy = await Schemas.strategies.find({
+            network
+        }).lean();
+
+        return strategy;
     }
 
 
     return {
-        addMarketData,
-        getAllMarkets
+        getStableCoins,
+        getStrategies
     }
 
 }
