@@ -88,25 +88,25 @@ module.exports = (imports,options) => {
             }
         })
 
-        // router.get('/strategies/distribution', async(req,res) => {
-        //     try {
-        //         let { id } = req.query;
+        router.get('/strategies/distribution', async(req,res) => {
+            try {
+                let { id } = req.query;
 
-        //         if(id === undefined) {
-        //             throw (`Strategy ID is missing`);
-        //         }
+                if(id === undefined) {
+                    throw (`Strategy ID is missing`);
+                }
 
-        //         let distribution = await controller.distribution.getStrategyAssetDistribution(id);
+                let distribution = await controller.distribution.getAssetDistribution(id);
 
-        //         res.send(distribution);
+                res.send(distribution);
                  
-        //     } catch(err) {
-        //         console.error(`Error in /strategies/distribution: `, err);
-        //         res.status(500).send({
-        //             message: 'Internal Server Error'
-        //         })
-        //     }
-        // })
+            } catch(err) {
+                console.error(`Error in /strategies/distribution: `, err);
+                res.status(500).send({
+                    message: 'Internal Server Error'
+                })
+            }
+        })
 
         return router;
 
