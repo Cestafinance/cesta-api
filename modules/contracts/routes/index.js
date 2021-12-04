@@ -108,6 +108,46 @@ module.exports = (imports,options) => {
             }
         })
 
+        router.get('/strategies/pnl', async(req,res) => {
+            try {
+                let { id, day } = req.query;
+
+                if(id === undefined) {
+                    throw (`Strategy ID is missing`);
+                }
+
+                let pnl = await controller.pnl.pnlHandler(id, day);
+               
+                res.send({pnl});
+
+            } catch(err) {
+                console.error(`Error in /strategies/pnl: `, err);
+                res.status(500).send({
+                    message: 'Internal Server Error'
+                })
+            }
+        })
+
+        router.get('/strategies/performance', async(req,res) => {
+            try {
+                let { id, day } = req.query;
+
+                if(id === undefined) {
+                    throw (`Strategy ID is missing`);
+                }
+
+                let performance = await controller.pnl.performanceHandler(id, day);
+               
+                res.send(performance);
+
+            } catch(err) {
+                console.error(`Error in /strategies/performance: `, err);
+                res.status(500).send({
+                    message: 'Internal Server Error'
+                })
+            }
+        })
+
         return router;
 
     };

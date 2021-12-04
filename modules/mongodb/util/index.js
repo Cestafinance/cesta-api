@@ -1,5 +1,6 @@
 module.exports = [
-    "daoCDV",
-    "daoSTO",
-    "daoMVF"
+   "daoASA",
+   "daoA2S",
+   "daoAXA",
+   "daoAXS"
 ]

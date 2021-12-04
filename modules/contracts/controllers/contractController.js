@@ -93,10 +93,19 @@ module.exports = () => {
         return strategy;
     }
 
+    const getStrategy = async(strategyId) => {
+        let strategy = await Schemas.strategies.find({
+            strategyId
+        }).lean();
+
+        return strategy;
+    }
+
 
     return {
         getStableCoins,
-        getStrategies
+        getStrategies,
+        getStrategy
     }
 
 }

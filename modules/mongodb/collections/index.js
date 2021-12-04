@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const tvls = require('./tvl/index');
+const pnls = require('./pnl/index');
 
 const modelPath = __dirname;
 
@@ -18,6 +19,10 @@ fs
 // Add TVLs into schemas
 tvls.forEach((tvl) => {
     schemas[tvl.name] = tvl;
+})
+
+pnls.forEach((pnl) => {
+    schemas[pnl.name] = pnl;
 })
 
 module.exports = schemas;
