@@ -1,8 +1,12 @@
-const { calculateStrategyPNL } = require("../utils/pnl-util");
 const { getAssetDistribution } = require("../utils/distribution-util");
 
 module.exports = () => {
     const module = require('../config/module');
+    
+    const { getStrategies } = require("../controllers/contractController")();
+    const { getLatestTVL } = require("../controllers/tvlController")();
+    const { pnlHandler } = require("../controllers/pnlController")();
+
     const imports = module.getImports();
     const options = module.getOptions();
 
@@ -10,28 +14,11 @@ module.exports = () => {
         models: Schemas
     } = imports.mongoose
 
-    // TODO: Duplicated function in contract controller
-    // Should import from there
-    const getStrategies = async (network) => {
-        let strategy = await Schemas.strategies.find({
-            network
-        }).lean();
-
-        return strategy;
-    }
-
     const findAllTvls = async(strategyIds) => {
         const tvls = {};
         await Promise.all(
             strategyIds.map(async(s) => {
-                // TODO: Duplicated function in tvl controller 
-                let collectionName = `${s}_tvl`;
-                let tvl = await Schemas[collectionName]
-                    .find({})
-                    .limit(1)
-                    .sort('-timestamp')
-                    .lean();
-        
+                let tvl = await getLatestTVL(s);
                 tvls[s] = tvl[0]?.tvl;
             })
         ) 
@@ -43,17 +30,7 @@ module.exports = () => {
         const pnls = {};
         await Promise.all(
             strategyIds.map(async(s) => {
-                // TODO: Duplicated function in tvl controller 
-                const collectionName = `${s}_performance`;
-                const data = await Schemas[collectionName]
-                    .find({})
-                    .lean();
-                
-                let pnl = 0;
-                if(data.length > 0) {
-                   pnl = await calculateStrategyPNL(data);
-                }
-              
+                const pnl = await pnlHandler(s);
                 pnls[s] = pnl;
             })
         ); 
@@ -65,7 +42,6 @@ module.exports = () => {
         const distributions = {};
         await Promise.all(
             strategyIds.map(async(s) => {
-                // TODO: Duplicated function in tvl controller 
                 const distribution = await getAssetDistribution(s);
                 distributions[s] = distribution;
             })

@@ -44,7 +44,8 @@ module.exports = () => {
             const data = await findData(strategyId, startTime);
 
             if (!data || data === undefined || data?.length <= 0) {
-                throw (`Missing data for PNL Calculation`);
+                console.error(`No performance data found for strategy ${strategyId}`);
+                return 0;
             }
 
             // Return PNL since inception
