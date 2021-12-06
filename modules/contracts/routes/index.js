@@ -96,7 +96,7 @@ module.exports = (imports,options) => {
                     throw (`Strategy ID is missing`);
                 }
 
-                let distribution = await controller.distribution.getAssetDistribution(id);
+                let distribution = await controller.distribution.distributionHandler(id);
 
                 res.send(distribution);
                  
@@ -172,6 +172,22 @@ module.exports = (imports,options) => {
                 })
             }
         })
+
+        router.get('/strategies/list/info', async (req, res) => {
+            try {
+
+                let {network = 'fuji'} = req.query;
+
+                let info = await controller.consolidate.consolidateHandler(network);
+
+                res.send(info);
+
+            } catch (Err) {
+                res.status(500).send({
+                    message: 'Internal Server Error'
+                })
+            }
+        });
 
         return router;
 
