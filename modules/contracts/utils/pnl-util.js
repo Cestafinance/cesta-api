@@ -1,5 +1,7 @@
 const { COINGECKO_ID: CoingeckoIds } = require("../constants/distribution/coingekcoIds");
- 
+const { TOKEN_CHART_COLOR, BACKUP_CHART_COLOR} = require("../constants/distribution/chartColors");
+const dateTimeHelper = require("../utils/datetime-util");
+
 const processPerformanceData = (datas, strategyId, sinceInception = false) => {
     try {
         if (!datas || datas === undefined || datas.length <= 0) {
@@ -109,8 +111,78 @@ const calculatePerformance = (initial, current) => {
     }
 }
 
+// Chart Data
+const processChartData = (apys, strategyId) => {
+    const result = [];
+    const apyAttributes = getApyAttributeNameByStrategy(strategyId);
+
+    // Array item added into the result: [seriesName, [[timestamp, apy], [timestamp, apy]]]
+    // First item in array item: series name, example: citadelApy, represent a line in line chart
+    // Second item in array item: series data, Array of [timestamp, apy]
+    // Third item in array item: series color
+    let chartColorIndex = 0; // Used to randomize chart color
+    apyAttributes.forEach(attributes => { 
+        let chartColor = TOKEN_CHART_COLOR[attributes.seriesName.toUpperCase()];
+        if(chartColor === undefined) {
+            chartColor = BACKUP_CHART_COLOR[chartColorIndex];
+            chartColorIndex++;
+        }
+        result.push([attributes.seriesName, [], chartColor]) 
+    });
+
+    
+    apys.forEach(data => {
+        const date = dateTimeHelper.toMillisecondsTimestamp(data["date"]);
+      
+        apyAttributes.map((a, index) => {
+            // Add APY into data, etf strategies or yearn aprs require to multiply by 100 for percentage
+            const apy = (a.attributeName === "aprs") 
+                ? data[a.attributeName] * 100 
+                : data[a.attributeName];
+            result[index][1].push([date, +parseFloat(apy).toFixed(4)]); // "+" apy as number instead of string
+        });
+    });
+
+    return result;
+} 
+
+ // TODO: Change this
+ const getApyAttributeNameByStrategy = (strategyType) => {
+    strategyType = strategyType.toLowerCase();
+    switch(strategyType) {
+        case "daoasa":
+            return [
+                { seriesName: "DAO AXA", attributeName: "lp_performance"},
+                { seriesName: "BTC", attributeName: "btc_performance" },
+                { seriesName: "ETH", attributeName: "eth_performance" },
+            ];
+        case "daoaxs":
+            return [
+                { seriesName: "DAO AXS", attributeName: "lp_performance"},
+                { seriesName: "BTC", attributeName: "btc_performance" },
+                { seriesName: "ETH", attributeName: "eth_performance" },
+            ];
+        case "daoasa":
+            return [
+                { seriesName: "DAO ASA", attributeName: "lp_performance"},
+                { seriesName: "BTC", attributeName: "btc_performance" },
+                { seriesName: "ETH", attributeName: "eth_performance" },
+            ];
+        case "daoa2s":
+            return [
+                { seriesName: "DAO A2S", attributeName: "lp_performance"},
+                { seriesName: "BTC", attributeName: "btc_performance" },
+                { seriesName: "ETH", attributeName: "eth_performance" },
+            ];
+        default: 
+            return [];
+    }
+}
+
 module.exports = {
     calculatePerformance,
     calculateStrategyPNL,
-    processPerformanceData
+    processPerformanceData,
+    processChartData,
+    getApyAttributeNameByStrategy
 }

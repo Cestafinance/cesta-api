@@ -148,6 +148,31 @@ module.exports = (imports,options) => {
             }
         })
 
+        router.get('/strategies/chart/:day', async(req,res) => {
+            try {
+                let { id } = req.query;
+                let { day } = req.params;
+
+                if(id === undefined) {
+                    throw (`Strategy ID is missing`);
+                }
+
+                if(day === undefined) {
+                    throw (`Days is missing`);
+                }
+
+                let chartData = await controller.pnl.chartHandler(id, day);
+               
+                res.send(chartData);
+
+            } catch(err) {
+                console.error(`Error in /strategies/chart/:day: `, err);
+                res.status(500).send({
+                    message: 'Internal Server Error'
+                })
+            }
+        })
+
         return router;
 
     };

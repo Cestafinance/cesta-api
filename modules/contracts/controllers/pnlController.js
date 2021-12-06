@@ -1,5 +1,5 @@
 const dateTimeHelper = require("../utils/datetime-util");
-const { calculateStrategyPNL, processPerformanceData } = require("../utils/pnl-util");
+const { calculateStrategyPNL, processPerformanceData, processChartData } = require("../utils/pnl-util");
 
 module.exports = () => {
     const module = require('../config/module');
@@ -95,12 +95,45 @@ module.exports = () => {
         }
     }
 
+    const chartHandler = async(strategyId, days) => {
+        let result = [];
+        let finalResult = { performanceHistory: 0, chartData: result };
+
+        if (!dateTimeHelper.validTimePeriod.includes(days)) {
+            throw (`Days should be 1y, 6m, 30d, 7d, 1d or empty (all).`);
+        }
+
+        if (strategyId === undefined) {
+            throw (`Missing strategy id.`)
+        }
+
+        try { 
+            const startTime = dateTimeHelper.getStartTimeFromParameter(days);
+            const data =  await findData(strategyId, startTime);
+
+            if(data !== undefined && data?.length > 0) {
+                const historicalData  = processPerformanceData(data, strategyId);
+                const pnl = await calculateStrategyPNL(data);
+                result = processChartData(historicalData, strategyId);
+
+                finalResult = {
+                    performanceHistory: pnl,
+                    chartData: result
+                };
+            }
+            
+            return finalResult;
+            
+        } catch (err) {
+            console.error(`Error in getChartData(): `, err);
+            return finalResult;
+        }
+    }
+
     return {
         pnlHandler,
         performanceHandler,
-       //  processPerformanceData, 
-        findData,
-       //  calculateStrategyPNL
+        chartHandler
     }
 
 }
