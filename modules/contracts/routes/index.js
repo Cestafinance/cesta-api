@@ -77,7 +77,7 @@ module.exports = (imports,options) => {
 
         router.get('/strategies/tvl/total', async(req,res) => {
             try {
-                let total = await controller.tvl.getLatestTotalTVL(strategyId);
+                let total = await controller.tvl.getLatestTotalTVL();
                 res.send(total);
                  
             } catch(err) {

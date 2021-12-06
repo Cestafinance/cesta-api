@@ -48,8 +48,12 @@ module.exports = () => {
             .limit(1)
             .sort('-timestamp')
             .lean();
+        totalTvl = totalTvl.map(t => { 
+                delete t._id;
+                return t
+        })
 
-        return totalTvl;
+        return totalTvl[0];
     }
 
     return {
