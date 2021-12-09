@@ -32,6 +32,7 @@
     "moment-timezone": "^0.5.33",
     "mongoose": "^6.0.8",
     "path": "^0.12.7",
+    "swagger-ui-express": "^4.2.0",
     "web3": "^1.5.3"
   }
 }

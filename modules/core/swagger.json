@@ -1,0 +1,239 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Cesta Finance API",
+        "description": "Cesta Finance API documentation"
+    },
+    "basePath": "/api/v1/contracts/",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/stable/coins": {
+            "get": {
+                "tags": [
+                    "Coins"
+                ],
+                "description": "List of stablecoins by selected network",
+                "parameters": [
+                    {
+                        "name": "network",
+                        "in": "query",
+                        "description": "Network selected",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+        "/strategies/list": {
+            "get": {
+                "tags": [
+                    "Strategies"
+                ],
+                "description": "List of strategies with its respective information",
+                "parameters": [
+                    {
+                        "name": "network",
+                        "in": "query",
+                        "description": "Network selected",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+        "/strategies/list/info": {
+            "get": {
+                "tags": [
+                    "Strategies"
+                ],
+                "description": "Consolidate information for each strategy (TVL, PNL, Asset Composition)",
+                "parameters": [
+                    {
+                        "name": "network",
+                        "in": "query",
+                        "description": "Network selected",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+        "/strategies/tvl": {
+            "get": {
+                "tags": [
+                    "Strategies"
+                ],
+                "description": "Latest TVL for the selected strategy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the selected strategy",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+        "/strategies/tvl/list": {
+            "get": {
+                "tags": [
+                    "Strategies"
+                ],
+                "description": "Historical TVLs for the selected strategy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the selected strategy",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+        "/strategies/tvl/total": {
+            "get": {
+                "tags": [
+                    "Strategies"
+                ],
+                "description": "Total TVL of strategies",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+        "/strategies/distribution": {
+            "get": {
+                "tags": [
+                    "Strategies"
+                ],
+                "description": "Asset allocation for the selected strategy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the selected strategy",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+        "/strategies/pnl": {
+            "get": {
+                "tags": [
+                    "Strategies"
+                ],
+                "description": "PNL value for the selected strategy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the selected strategy",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "day",
+                        "in": "query",
+                        "description": "Period for calculation. '7d' - one week, '30d' - one month, '6m' - six months, '1y' - one year.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+        "/strategies/performance": {
+            "get": {
+                "tags": [
+                    "Strategies"
+                ],
+                "description": "Performance data for the selected strategy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the selected strategy",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "day",
+                        "in": "query",
+                        "description": "Period for calculation. '7d' - one week, '30d' - one month, '6m' - six months, '1y' - one year.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        },
+        "/strategies/chart/{day}": {
+            "get": {
+                "tags": [
+                    "Strategies"
+                ],
+                "description": "Chart data for the selected strategy, calculated based on PNL over selected period.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the selected strategy",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "day",
+                        "in": "path",
+                        "description": "Period for calculation. '7d' - one week, '30d' - one month, '6m' - six months, '1y' - one year.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
+        }
+    }
+}
