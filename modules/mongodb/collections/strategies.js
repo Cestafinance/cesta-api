@@ -14,7 +14,10 @@ const Strategies = new Schema({
         type: Number
     },
     ROI: {
-      type: Double
+        type: Double
+    },
+    liquidity: {
+        type: Double
     },
     feeDecimals: {
         type: Number
