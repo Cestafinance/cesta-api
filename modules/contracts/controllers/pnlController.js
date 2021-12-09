@@ -43,7 +43,7 @@ module.exports = () => {
             const startTime = dateTimeHelper.getStartTimeFromParameter(days);
             const data = await findData(strategyId, startTime);
 
-            if (!data || data === undefined || data?.length <= 0) {
+            if (!data || data === undefined || (data && data.length <= 0)) {
                 console.error(`No performance data found for strategy ${strategyId}`);
                 return 0;
             }
@@ -81,7 +81,7 @@ module.exports = () => {
             const sinceInception = (startTime === -1);
             const data = await findData(strategyId, startTime);
 
-            if (!data || data === undefined || data?.length <= 0) {
+            if (!data || data === undefined || (data && data.length <= 0)) {
                 return result;
             }
 
@@ -112,7 +112,7 @@ module.exports = () => {
             const startTime = dateTimeHelper.getStartTimeFromParameter(days);
             const data =  await findData(strategyId, startTime);
 
-            if(data !== undefined && data?.length > 0) {
+            if(data !== undefined && data && data.length > 0) {
                 const historicalData  = processPerformanceData(data, strategyId);
                 const pnl = await calculateStrategyPNL(data);
                 result = processChartData(historicalData, strategyId);

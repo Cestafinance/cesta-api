@@ -19,7 +19,7 @@ module.exports = () => {
         await Promise.all(
             strategyIds.map(async(s) => {
                 let tvl = await getLatestTVL(s);
-                tvls[s] = tvl[0]?.tvl;
+                tvls[s] = tvl[0]? tvl[0].tvl : 0;
             })
         ) 
 
