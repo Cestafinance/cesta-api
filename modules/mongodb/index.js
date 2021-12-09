@@ -1,3 +1,6 @@
+require('dotenv').config();
+const databaseConfig = require('./config/database');
+
 module.exports = (options, imports, register) => {
 
     const mongoose = require('mongoose');
@@ -5,9 +8,10 @@ module.exports = (options, imports, register) => {
 
     const schemas = require('./collections');
 
-    const databaseConfig = require('./config/database.json')[options.environment || 'development'];
+    const connectUrl = process.env.NODE_ENV === 'development' ? `mongodb://${databaseConfig.host}` :
+        `mongodb://${databaseConfig.username}:${databaseConfig.password}@${databaseConfig.host}/${databaseConfig.database}${databaseConfig.extendedUrl}`;
 
-    mongoose.connect(`mongodb://${databaseConfig.username}:${databaseConfig.password}@${databaseConfig.host}/${databaseConfig.database}${databaseConfig.extendedUrl}`, {
+    mongoose.connect(connectUrl, {
         useNewUrlParser: true,
         // useUnifiedTopology: true,
         // useFindAndModify: false,
