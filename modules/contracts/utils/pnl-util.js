@@ -122,7 +122,7 @@ const processChartData = (apys, strategyId) => {
     // Third item in array item: series color
     let chartColorIndex = 0; // Used to randomize chart color
     apyAttributes.forEach(attributes => { 
-        let chartColor = TOKEN_CHART_COLOR[attributes.seriesName.toUpperCase()];
+        let chartColor = TOKEN_CHART_COLOR[attributes.tokenId];
         if(chartColor === undefined) {
             chartColor = BACKUP_CHART_COLOR[chartColorIndex];
             chartColorIndex++;
@@ -150,29 +150,29 @@ const processChartData = (apys, strategyId) => {
  const getApyAttributeNameByStrategy = (strategyType) => {
     strategyType = strategyType.toLowerCase();
     switch(strategyType) {
-        case "daoasa":
+        case "cestaaxa":
             return [
-                { seriesName: "DAO AXA", attributeName: "lp_performance"},
-                { seriesName: "BTC", attributeName: "btc_performance" },
-                { seriesName: "ETH", attributeName: "eth_performance" },
+                { seriesName: "Cesta AXA", attributeName: "lp_performance", tokenId: ""},
+                { seriesName: "BTC", attributeName: "btc_performance", tokenId: CoingeckoIds.BTC },
+                { seriesName: "ETH", attributeName: "eth_performance", tokenId: CoingeckoIds.ETH },
             ];
-        case "daoaxs":
+        case "cestaaxs":
             return [
-                { seriesName: "DAO AXS", attributeName: "lp_performance"},
-                { seriesName: "BTC", attributeName: "btc_performance" },
-                { seriesName: "ETH", attributeName: "eth_performance" },
+                { seriesName: "Cesta AXS", attributeName: "lp_performance", tokenId: ""},
+                { seriesName: "BTC", attributeName: "btc_performance", tokenId: CoingeckoIds.BTC },
+                { seriesName: "ETH", attributeName: "eth_performance", tokenId: CoingeckoIds.ETH },
             ];
-        case "daoasa":
+        case "cestaasa":
             return [
-                { seriesName: "DAO ASA", attributeName: "lp_performance"},
-                { seriesName: "BTC", attributeName: "btc_performance" },
-                { seriesName: "ETH", attributeName: "eth_performance" },
+                { seriesName: "Cesta ASA", attributeName: "lp_performance", tokenId: ""},
+                { seriesName: "BTC", attributeName: "btc_performance", tokenId: CoingeckoIds.BTC },
+                { seriesName: "ETH", attributeName: "eth_performance", tokenId: CoingeckoIds.ETH },
             ];
-        case "daoa2s":
+        case "cestaa2s":
             return [
-                { seriesName: "DAO A2S", attributeName: "lp_performance"},
-                { seriesName: "BTC", attributeName: "btc_performance" },
-                { seriesName: "ETH", attributeName: "eth_performance" },
+                { seriesName: "Cesta A2S", attributeName: "lp_performance", tokenId: ""},
+                { seriesName: "BTC", attributeName: "btc_performance", tokenId: CoingeckoIds.BTC },
+                { seriesName: "ETH", attributeName: "eth_performance", tokenId: CoingeckoIds.ETH },
             ];
         default: 
             return [];

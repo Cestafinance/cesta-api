@@ -3,7 +3,7 @@ const {TOKEN_CHART_COLOR, BACKUP_CHART_COLOR } = require("../constants/distribut
 const { COINGECKO_URL } = require("../constants/distribution/coingekcoIds");
 
 const getAssetDistribution = async(strategyId) => {
-    strategyId = strategyId.toUpperCase();
+    // strategyId = strategyId.toUpperCase();
     const tokens = ASSET_DISTRIBUTION[strategyId];
     if(tokens === undefined) {
         throw(`Assets for ${strategyId} is undefined.`);
