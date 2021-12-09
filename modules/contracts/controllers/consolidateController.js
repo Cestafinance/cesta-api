@@ -75,9 +75,9 @@ module.exports = () => {
 
             symbols.forEach(s => {
                 const object =  {
-                    pnl: pnls[s] ?? 0,
-                    tvl: tvls[s] ?? 0,
-                    distribution: distributions[s] ?? []
+                    pnl: pnls[s] ? pnls[s] :  0,
+                    tvl: tvls[s] ? tvls[s] : 0,
+                    distribution: distributions[s] ? distributions[s] : 0
                 }
                 result[s] = object;
             })
