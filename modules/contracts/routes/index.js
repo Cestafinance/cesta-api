@@ -46,7 +46,7 @@ module.exports = (imports,options) => {
 
                 let tvl = await controller.tvl.getLatestTVL(id);
 
-                if(tvl?.length>0) {
+                if(tvl !== undefined && tvl !== null && tvl.length>0) {
                     delete tvl[0]._id;
                 }
 
