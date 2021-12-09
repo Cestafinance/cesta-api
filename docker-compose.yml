@@ -1,0 +1,38 @@
+version: "3.6"
+services:
+  database:
+    image: mongo
+    container_name: "database"
+    command: [--auth]
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - "mongodata:/data/db"
+    networks:
+      - backend
+  api:
+    container_name: "api"
+    image: cestafi/api-develop:latest
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+  cron:
+    container_name: "cron"
+    image: cestafi/cron-develop:latest
+    restart: always
+    env_file:
+      - .env.cron
+    ports:
+      - "5000:5000"
+    networks:
+      - backend
+volumes:
+  mongodata:
+networks:
+  backend:
+    driver: bridge

@@ -1,0 +1,24 @@
+{
+    "development" : {
+      "host": "",
+      "extendedUrl": "",
+      "username": "",
+      "password": "",
+      "database": ""
+    },
+    "beta": {
+      "host": "",
+      "extendedUrl": "",
+      "username": "",
+      "password": "",
+      "database": ""
+    },
+    "production": {
+      "host": "",
+      "extendedUrl": "",
+      "username": "",
+      "password": "",
+      "database": ""
+    }
+  }
+  
