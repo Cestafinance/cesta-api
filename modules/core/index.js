@@ -15,7 +15,7 @@ module.exports = (options, imports, register) => {
     app.use(bodyParser.text());
     app.use(cors());
 
-    const port = options.port || 5000;
+    const port = options.port || 8080;
 
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     app.use('/api/v1/contracts', imports.contactRoutes);
