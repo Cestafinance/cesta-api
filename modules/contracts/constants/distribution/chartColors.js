@@ -10,6 +10,10 @@ const TOKEN_CHART_COLOR = {
     [CoingeckoIds.MATIC]: "#8247E5",
     [CoingeckoIds.DOGE]: "#C25E33",
     [CoingeckoIds.BNB]: "#F3DF2F",
+    [CoingeckoIds.AVAX]: "#E84142",
+    [CoingeckoIds.PNG]: "#FF5700",
+    [CoingeckoIds.LYD]: "#FFC71A",
+    [CoingeckoIds.JOE]: "#FF5E5D",
 }
 
 const BACKUP_CHART_COLOR = [
