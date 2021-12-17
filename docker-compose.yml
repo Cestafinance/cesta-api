@@ -13,7 +13,7 @@ services:
       - backend
   api:
     container_name: "api"
-    image: cestafi/api-beta:latest
+    image: cestafi/api-app:latest
     restart: always
     env_file:
       - .env
@@ -23,7 +23,7 @@ services:
       - backend
   cron:
     container_name: "cron"
-    image: cestafi/cron-beta:latest
+    image: cestafi/cron-app:latest
     restart: always
     env_file:
       - .env.cron
