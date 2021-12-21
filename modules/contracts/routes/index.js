@@ -189,6 +189,22 @@ module.exports = (imports,options) => {
             }
         });
 
+        router.get('/bonds/list', async(req,res) => {
+            try {
+
+                let {network = 'fuji'} = req.query;
+
+                let info = await controller.bond.findBonds(network);
+
+                res.send(info);
+
+            } catch (Err) {
+                res.status(500).send({
+                    message: 'Internal Server Error'
+                })
+            }
+        })
+
         return router;
 
     };
