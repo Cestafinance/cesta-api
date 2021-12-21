@@ -42,7 +42,8 @@ module.exports = () => {
 
 
     return {
-        distributionHandler
+        distributionHandler,
+        getAssetComposition
     }
 
 }
