@@ -6,6 +6,7 @@ module.exports = () => {
     const { getStrategies } = require("../controllers/contractController")();
     const { getLatestTVL } = require("../controllers/tvlController")();
     const { pnlHandler } = require("../controllers/pnlController")();
+    const { getAssetComposition } = require("../controllers/distributionController")();
 
     const imports = module.getImports();
     const options = module.getOptions();
@@ -42,7 +43,13 @@ module.exports = () => {
         const distributions = {};
         await Promise.all(
             strategyIds.map(async(s) => {
-                const distribution = await getAssetDistribution(s);
+                const composition = await getAssetComposition(s);
+
+                let distribution = [];
+                if(composition.length > 0) {
+                    distribution = await getAssetDistribution(composition[0]);
+                }
+                
                 distributions[s] = distribution;
             })
         ); 
