@@ -1,32 +1,32 @@
 const {Schema, model} = require('mongoose');
 
 const Bonds = new Schema({
-    symbol: {
+    name: {
         type: String
     },
-    label: {
+    displayName: {
         type: String
     },
-    address: {
+    bondToken: {
         type: String
     },
+    reserveContractAbi: [Object],
     network: {
         type: String
     },
-    tokenAddress: {
-        type: String
-    },
-    tokenName: {
-        type: String
-    },
-    isLpBond: {
+    isLp: {
         type: Boolean
     },
     lpUrl: {
         type: String
     },
-    abi: [Object],
-    tokenAbi: [Object],
+    networkAddrs: {
+        type: Object
+    }, 
+    bondContractABI: [Object],
+    token: {
+        type: Object
+    }
 })
 
 module.exports = model('bonds', Bonds);
