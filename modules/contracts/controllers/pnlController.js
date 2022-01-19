@@ -27,6 +27,15 @@ module.exports = () => {
         return data;
     }
 
+    const getStrategySeries = async(symbol) => {
+        try { 
+            let strategies = await Schemas["strategy_pnl_series"].find({ symbol }).lean();
+            return strategies;
+        } catch (err) { 
+            console.error(`Error in getStrategySeries() : `, err);
+        }
+    }
+
     // Returns only the PNL value
     const pnlHandler = async (strategyId, days) => {
         let pnl = 0;
@@ -113,9 +122,16 @@ module.exports = () => {
             const data =  await findData(strategyId, startTime);
 
             if(data !== undefined && data && data.length > 0) {
-                const historicalData  = processPerformanceData(data, strategyId);
+                // Find series for strategy graph
+                const pnlSeries = await getStrategySeries(strategyId);
+                if(pnlSeries === undefined || pnlSeries.length <= 0) {
+                    throw(`Missing ${strategyId} PNL data in strategy_pnl_series.`);
+                }
+                const series = pnlSeries[0].series;
+                
+                const historicalData  = processPerformanceData(data, strategyId, series);
                 const pnl = await calculateStrategyPNL(data);
-                result = processChartData(historicalData, strategyId);
+                result = processChartData(historicalData, strategyId, series);
 
                 finalResult = {
                     performanceHistory: pnl,

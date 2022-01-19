@@ -2,7 +2,7 @@ const { COINGECKO_ID: CoingeckoIds } = require("../constants/distribution/coinge
 const { TOKEN_CHART_COLOR, BACKUP_CHART_COLOR} = require("../constants/distribution/chartColors");
 const dateTimeHelper = require("../utils/datetime-util");
 
-const processPerformanceData = (datas, strategyId, sinceInception = false) => {
+const processPerformanceData = (datas, strategyId, pnlSeries, sinceInception = false) => {
     try {
         if (!datas || datas === undefined || datas.length <= 0) {
             throw (`Datas is undefined or empty in processPerformanceData.`);
@@ -11,14 +11,8 @@ const processPerformanceData = (datas, strategyId, sinceInception = false) => {
             throw (`Strategy Type is not defined`);
         }
 
-        // To get which series in 
-        // const contracts = contractHelper.getContractsFromDomain();
-        // const pnlSeries = contracts.farmer[strategyId].pnl;
-        const pnlSeries = [
-            {db: "lp", tokenId: ""},
-            {db: "btc", tokenId: CoingeckoIds.BTC},
-            {db: "eth", tokenId: CoingeckoIds.ETH},
-        ];
+        // To filter series which is set to show on graph
+        pnlSeries = pnlSeries.filter(p => p.showOnGraph);
 
         if(sinceInception) {
             datas.forEach(data => {
@@ -112,7 +106,7 @@ const calculatePerformance = (initial, current) => {
 }
 
 // Chart Data
-const processChartData = (apys, strategyId) => {
+const processChartData = (apys, strategyId, series) => {
     const result = [];
     const apyAttributes = getApyAttributeNameByStrategy(strategyId);
 
@@ -121,24 +115,28 @@ const processChartData = (apys, strategyId) => {
     // Second item in array item: series data, Array of [timestamp, apy]
     // Third item in array item: series color
     let chartColorIndex = 0; // Used to randomize chart color
-    apyAttributes.forEach(attributes => { 
+
+    series = series.filter(s => s.showOnGraph);  // Filter for series which allow to show on the site
+
+    series.forEach(attributes => { 
         let chartColor = TOKEN_CHART_COLOR[attributes.tokenId];
         if(chartColor === undefined) {
             chartColor = BACKUP_CHART_COLOR[chartColorIndex];
             chartColorIndex++;
         }
-        result.push([attributes.seriesName, [], chartColor]) 
+        result.push([attributes.name, [], chartColor]) 
     });
 
     
     apys.forEach(data => {
         const date = dateTimeHelper.toMillisecondsTimestamp(data["date"]);
-      
-        apyAttributes.map((a, index) => {
+       
+        series.map((a, index) => {
+            const attributeName = `${a.db}_performance`;
             // Add APY into data, etf strategies or yearn aprs require to multiply by 100 for percentage
-            const apy = (a.attributeName === "aprs") 
-                ? data[a.attributeName] * 100 
-                : data[a.attributeName];
+            const apy = (attributeName === "aprs") 
+                ? data[attributeName] * 100 
+                : data[attributeName];
             result[index][1].push([date, +parseFloat(apy).toFixed(4)]); // "+" apy as number instead of string
         });
     });
