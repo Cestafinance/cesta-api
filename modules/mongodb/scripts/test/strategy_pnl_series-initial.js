@@ -22,8 +22,8 @@ db.strategy_pnl_series.insertMany([
             },
             {
                 db: 'eth', 
-                network: "ethereum",
-                chainlink: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+                network: "ethereum", 
+                chainlink: "0x9326BFA02ADD2366b30bacB125260Af641031331",
                 decimals: 8, // decimals from chainlink contract
                 name: "ETH", // series label on the frontend graph,
                 showOnGraph: true,
@@ -32,7 +32,7 @@ db.strategy_pnl_series.insertMany([
             {
                 db: 'btc', // refer to lp_token_price_usd in collection data
                 network: "ethereum",
-                chainlink: "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
+                chainlink: "0x6135b13325bfC4B00278B4abC5e20bbce2D6580e",
                 decimals: 8, // decimals from chainlink contract
                 name: "BTC", // series label on the frontend graph
                 showOnGraph: true,
@@ -55,7 +55,7 @@ db.strategy_pnl_series.insertMany([
             {
                 db: 'eth', 
                 network: "ethereum",
-                chainlink: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+                chainlink: "0x9326BFA02ADD2366b30bacB125260Af641031331",
                 decimals: 8, // decimals from chainlink contract
                 name: "ETH",// series label on the frontend graph
                 showOnGraph: true,
@@ -64,7 +64,7 @@ db.strategy_pnl_series.insertMany([
             {
                 db: 'btc', // refer to lp_token_price_usd in collection data
                 network: "ethereum",
-                chainlink: "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
+                chainlink: "0x6135b13325bfC4B00278B4abC5e20bbce2D6580e",
                 decimals: 8, // decimals from chainlink contract
                 name: "BTC", // series label on the frontend graph
                 showOnGraph: true,
@@ -87,7 +87,7 @@ db.strategy_pnl_series.insertMany([
             {
                 db: 'eth', 
                 network: "ethereum",
-                chainlink: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+                chainlink: "0x9326BFA02ADD2366b30bacB125260Af641031331",
                 decimals: 8, // decimals from chainlink contract
                 name: "ETH", // series label on the frontend graph
                 showOnGraph: true,
@@ -96,7 +96,7 @@ db.strategy_pnl_series.insertMany([
             {
                 db: 'btc', // refer to lp_token_price_usd in collection data
                 network: "ethereum",
-                chainlink: "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
+                chainlink: "0x6135b13325bfC4B00278B4abC5e20bbce2D6580e",
                 decimals: 8, // decimals from chainlink contract
                 name: "BTC", // series label on the frontend graph
                 showOnGraph: true,
@@ -119,7 +119,7 @@ db.strategy_pnl_series.insertMany([
             {
                 db: 'eth', 
                 network: "ethereum",
-                chainlink: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+                chainlink: "0x9326BFA02ADD2366b30bacB125260Af641031331",
                 decimals: 8, // decimals from chainlink contract
                 name: "ETH", // series label on the frontend graph
                 showOnGraph: true,
@@ -128,7 +128,7 @@ db.strategy_pnl_series.insertMany([
             {
                 db: 'btc', // refer to lp_token_price_usd in collection data
                 network: "ethereum",
-                chainlink: "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
+                chainlink: "0x6135b13325bfC4B00278B4abC5e20bbce2D6580e",
                 decimals: 8, // decimals from chainlink contract
                 name: "BTC", // series label on the frontend graph
                 showOnGraph: true,
