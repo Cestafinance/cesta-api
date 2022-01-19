@@ -15,7 +15,7 @@ Used to control chart series for each strategy, example data：
             chainlink: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419", // address for chainlink 
             decimals: 18, // decimals from chainlink contract
             name: "CESTA AXA", // Series name to be displayed on chart
-            showOnGraph: true, // Show series on chart
+            showOnGraph: true, // Show series on chart, set as false, if want to hide from graph
             tokenId: "ethereum", // use to get chart color at backend, use token's Coingecko ID.
         }
     ]
