@@ -13,7 +13,7 @@ db.strategy_pnl_series.insertMany([
         series: [
             {
                 db: 'lp', 
-                network: "ethereum",
+                network: "avalanche",
                 chainlink: "", 
                 decimals: 18, 
                 name: "CESTA AXA",
@@ -22,8 +22,8 @@ db.strategy_pnl_series.insertMany([
             },
             {
                 db: 'eth', 
-                network: "ethereum",
-                chainlink: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+                network: "avalanche",
+                chainlink: "0x976B3D034E162d8bD72D6b9C989d545b839003b0",
                 decimals: 8, // decimals from chainlink contract
                 name: "ETH", // series label on the frontend graph,
                 showOnGraph: true,
@@ -31,8 +31,8 @@ db.strategy_pnl_series.insertMany([
             },
             {
                 db: 'btc', // refer to lp_token_price_usd in collection data
-                network: "ethereum",
-                chainlink: "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
+                network: "avalanche",
+                chainlink: "0x2779D32d5166BAaa2B2b658333bA7e6Ec0C65743",
                 decimals: 8, // decimals from chainlink contract
                 name: "BTC", // series label on the frontend graph
                 showOnGraph: true,
@@ -45,7 +45,7 @@ db.strategy_pnl_series.insertMany([
         series: [
             {
                 db: 'lp', 
-                network: "ethereum",
+                network: "avalanche",
                 chainlink: "", 
                 decimals: 18, 
                 name: "CESTA AXS",
@@ -54,8 +54,8 @@ db.strategy_pnl_series.insertMany([
             },
             {
                 db: 'eth', 
-                network: "ethereum",
-                chainlink: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+                network: "avalanche",
+                chainlink: "0x976B3D034E162d8bD72D6b9C989d545b839003b0",
                 decimals: 8, // decimals from chainlink contract
                 name: "ETH",// series label on the frontend graph
                 showOnGraph: true,
@@ -63,8 +63,8 @@ db.strategy_pnl_series.insertMany([
             },
             {
                 db: 'btc', // refer to lp_token_price_usd in collection data
-                network: "ethereum",
-                chainlink: "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
+                network: "avalanche",
+                chainlink: "0x2779D32d5166BAaa2B2b658333bA7e6Ec0C65743",
                 decimals: 8, // decimals from chainlink contract
                 name: "BTC", // series label on the frontend graph
                 showOnGraph: true,
@@ -77,7 +77,7 @@ db.strategy_pnl_series.insertMany([
         series: [
             {
                 db: 'lp', 
-                network: "ethereum",
+                network: "avalanche",
                 chainlink: "", 
                 decimals: 18, 
                 name: "CESTA ASA",
@@ -86,8 +86,8 @@ db.strategy_pnl_series.insertMany([
             },
             {
                 db: 'eth', 
-                network: "ethereum",
-                chainlink: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+                network: "avalanche",
+                chainlink: "0x976B3D034E162d8bD72D6b9C989d545b839003b0",
                 decimals: 8, // decimals from chainlink contract
                 name: "ETH", // series label on the frontend graph
                 showOnGraph: true,
@@ -95,8 +95,8 @@ db.strategy_pnl_series.insertMany([
             },
             {
                 db: 'btc', // refer to lp_token_price_usd in collection data
-                network: "ethereum",
-                chainlink: "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
+                network: "avalanche",
+                chainlink: "0x2779D32d5166BAaa2B2b658333bA7e6Ec0C65743",
                 decimals: 8, // decimals from chainlink contract
                 name: "BTC", // series label on the frontend graph
                 showOnGraph: true,
@@ -109,7 +109,7 @@ db.strategy_pnl_series.insertMany([
         series: [
             {
                 db: 'lp', 
-                network: "ethereum",
+                network: "avalanche",
                 chainlink: "", 
                 decimals: 18, 
                 name: "CESTA A2S",
@@ -118,8 +118,8 @@ db.strategy_pnl_series.insertMany([
             },
             {
                 db: 'eth', 
-                network: "ethereum",
-                chainlink: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+                network: "avalanche",
+                chainlink: "0x976B3D034E162d8bD72D6b9C989d545b839003b0",
                 decimals: 8, // decimals from chainlink contract
                 name: "ETH", // series label on the frontend graph
                 showOnGraph: true,
@@ -127,8 +127,8 @@ db.strategy_pnl_series.insertMany([
             },
             {
                 db: 'btc', // refer to lp_token_price_usd in collection data
-                network: "ethereum",
-                chainlink: "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
+                network: "avalanche",
+                chainlink: "0x2779D32d5166BAaa2B2b658333bA7e6Ec0C65743",
                 decimals: 8, // decimals from chainlink contract
                 name: "BTC", // series label on the frontend graph
                 showOnGraph: true,
