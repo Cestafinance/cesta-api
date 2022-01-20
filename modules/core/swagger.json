@@ -234,6 +234,27 @@
                 ],
                 "responses": {}
             }
+        },
+        "/bonds/list": {
+            "get": {
+                "tags": [
+                    "bonds"
+                ],
+                "description": "List of bonds with its respective information",
+                "parameters": [
+                    {
+                        "name": "network",
+                        "in": "query",
+                        "description": "Network selected",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {}
+            }
         }
     }
 }
